@@ -86,6 +86,7 @@ func (*GCPMachineTemplate) ValidateUpdate(_ context.Context, oldObj, newObj runt
 	newGCPMachineTemplateSpec := newGCPMachineTemplate["spec"].(map[string]interface{})
 	oldGCPMachineTemplateSpec := oldGCPMachineTemplate["spec"].(map[string]interface{})
 
+	// allow changes to providerID, additionalLabels and additionalNetworkTags
 	for _, fieldName := range []string{"providerID", "additionalLabels", "additionalNetworkTags"} {
 		unstructured.RemoveNestedField(oldGCPMachineTemplateSpec, "template", "spec", fieldName)
 		unstructured.RemoveNestedField(newGCPMachineTemplateSpec, "template", "spec", fieldName)
